@@ -1,0 +1,260 @@
+{
+  "accessors": [
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 20204,
+      "max": [
+        15.975828170776367,
+        17.14482879638672,
+        2.263963460922241
+      ],
+      "min": [
+        -15.236139297485352,
+        -17.09622573852539,
+        -0.26908233761787415
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 242448,
+      "componentType": 5126,
+      "count": 20204,
+      "max": [
+        0.9999988675117493,
+        0.9999164938926697,
+        1.0
+      ],
+      "min": [
+        -0.9999719858169556,
+        -0.9992604851722717,
+        -0.9999999403953552
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 20204,
+      "max": [
+        0.9997458457946777,
+        0.8815916776657104
+      ],
+      "min": [
+        0.000244140625,
+        0.0002488089958205819
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 161632,
+      "componentType": 5126,
+      "count": 20204,
+      "max": [
+        0.9997458457946777,
+        0.8815916776657104
+      ],
+      "min": [
+        0.000244140625,
+        0.0002488089958205819
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 86982,
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "Оrрндп ЯТG (https://sketchfab.com/orphanrtg)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/manhole-cover-on-broken-asphalt-road-76ee7713e406448384a4fdbf6dee2bd1",
+      "title": "Manhole cover on broken asphalt road"
+    },
+    "generator": "Sketchfab-16.15.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 347928,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 323264,
+      "byteOffset": 347928,
+      "byteStride": 8,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 484896,
+      "byteOffset": 671192,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 1156088,
+      "uri": "scene.bin"
+    }
+  ],
+  "extensionsUsed": [
+    "KHR_materials_unlit"
+  ],
+  "images": [
+    {
+      "uri": "textures/kanal_u1_v1_baseColor.jpeg"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "name": "kanal_u1_v1",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicFactor": 0.0
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "kanal_kanal_u1_v1_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TEXCOORD_0": 2,
+            "TEXCOORD_1": 3
+          },
+          "indices": 4,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "matrix": [
+        0.065326988697052,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.4505505396178898e-17,
+        -0.065326988697052,
+        0.0,
+        0.0,
+        0.065326988697052,
+        1.4505505396178898e-17,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Sketchfab_model"
+    },
+    {
+      "children": [
+        2
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "173cd74aa38746d3b9dc1efa419e8228.fbx"
+    },
+    {
+      "children": [
+        3
+      ],
+      "name": "RootNode"
+    },
+    {
+      "children": [
+        4
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.220446049250313e-16,
+        -1.0,
+        0.0,
+        0.0,
+        1.0,
+        2.220446049250313e-16,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "kanal"
+    },
+    {
+      "mesh": 0,
+      "name": "kanal_kanal_u1_v1_0"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Sketchfab_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    }
+  ]
+}

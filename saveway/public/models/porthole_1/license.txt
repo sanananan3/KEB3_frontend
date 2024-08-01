@@ -1,0 +1,11 @@
+Model Information:
+* title:	Broken Asphalt
+* source:	https://sketchfab.com/3d-models/broken-asphalt-a44df945620e41b29ba3a731d75c9079
+* author:	burindunsmor (https://sketchfab.com/burindunsmor)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Broken Asphalt" (https://sketchfab.com/3d-models/broken-asphalt-a44df945620e41b29ba3a731d75c9079) by burindunsmor (https://sketchfab.com/burindunsmor) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

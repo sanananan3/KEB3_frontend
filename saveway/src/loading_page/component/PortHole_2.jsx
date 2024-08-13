@@ -13,7 +13,7 @@ export function PortHole_2(props) {
   const { nodes, materials } = useGLTF('./models/porthole_2/scene.gltf')
   return (
     <group {...props} dispose={null} >
-      <group rotation={[-Math.PI / 2, 0, 0]} scale={0.065}>
+      <group rotation={[-Math.PI / 2, 0, 0]} scale={0.1} position={[0,-9.08,1]}>
         <group rotation={[Math.PI / 2, 0, 0]}>
           <mesh
             castShadow

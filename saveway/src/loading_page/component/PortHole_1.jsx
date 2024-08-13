@@ -12,8 +12,8 @@ import { useGLTF } from '@react-three/drei'
 export function PortHole_1(props) {
   const { nodes, materials } = useGLTF('./models/porthole_1/scene.gltf')
   return (
-    <group {...props} dispose={null}>
-      <group rotation={[-Math.PI / 2, 0, 0]}>
+    <group {...props} dispose={null} scale={0.08} position={[0,-9,0]}>
+      <group rotation={[-Math.PI , 0, 0]}>
         <mesh
           castShadow
           receiveShadow

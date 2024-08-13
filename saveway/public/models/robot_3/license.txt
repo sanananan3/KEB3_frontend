@@ -1,0 +1,11 @@
+Model Information:
+* title:	FNaF: Security Breach Clean-Bot
+* source:	https://sketchfab.com/3d-models/fnaf-security-breach-clean-bot-a636ca9c755b471089f24beb813af410
+* author:	CombatCarl03 (https://sketchfab.com/CombatCarl03)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "FNaF: Security Breach Clean-Bot" (https://sketchfab.com/3d-models/fnaf-security-breach-clean-bot-a636ca9c755b471089f24beb813af410) by CombatCarl03 (https://sketchfab.com/CombatCarl03) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

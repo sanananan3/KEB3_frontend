@@ -5,23 +5,29 @@ import './loadingpage.css';
 import City from "./component/City";
 import Tubular from './component/Tubular';
 import RubberCone from './component/RubberCone';
-import { PortHole_1 } from "./component/PortHole_1";
-import { PortHole_2 } from "./component/PortHole_2";
-import { PortHole_3 } from "./component/PortHole_3";
-import { PortHole_4 } from "./component/PortHole_4";
+import {Robot} from './component/Robot';
+import {Robot_3} from './component/Robot_3';
+import {PortHole_5_2} from "./component/PortHole_5_2";
+import {PortHole_5} from "./component/PortHole_5";
+import {PortHole_6} from "./component/PortHole_6";
+import {PortHole_7} from "./component/PortHole_7";
+import {PortHole_6_2} from "./component/PortHole_6_2";
 
 export default function LoadingPage(){
 
     return (
-    <Canvas camera={{fov:90, position: [-25,50,75]}}>
+    <Canvas camera={{fov:80, position: [-20,60,85]}}>
 
         <LoadInside/>
         <City />
         <RubberCone />
         <Tubular />
-        <PortHole_2 />
-        <PortHole_3 />
-        
+        <PortHole_5 />
+        <PortHole_5_2 />
+        <PortHole_6 /> 
+        <PortHole_6_2 />
+        <PortHole_7 />
+        <Robot_3 />
 
     </Canvas>
     )

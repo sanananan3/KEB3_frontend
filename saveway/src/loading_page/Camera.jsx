@@ -3,7 +3,7 @@ import { useThree } from '@react-three/fiber';
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
-export const CameraControls = ({ position, target, fov=57 }) => {
+export const CameraControls = ({ position, target, fov=40}) => {
   const { camera, gl } = useThree();
   const controlsRef = useRef();
 

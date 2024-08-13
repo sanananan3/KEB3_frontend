@@ -1,0 +1,11 @@
+Model Information:
+* title:	Dry riverbed, Spain
+* source:	https://sketchfab.com/3d-models/dry-riverbed-spain-6b596a7736c34938b1979e57288a0145
+* author:	Sara Carena (https://sketchfab.com/saracarena1)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Dry riverbed, Spain" (https://sketchfab.com/3d-models/dry-riverbed-spain-6b596a7736c34938b1979e57288a0145) by Sara Carena (https://sketchfab.com/saracarena1) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)

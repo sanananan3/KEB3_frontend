@@ -55,7 +55,7 @@ export default function RubberCone(props) {
 
 {/* 3번 라바콘 */}
         <group
-          position={[250, 13.829, 370]}
+          position={[230, 13.829, 400]}
           rotation={[-Math.PI / 2, 0, -2.797]}
           scale={100}>
           <mesh

@@ -1,0 +1,155 @@
+/* 폰트 임베드 */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Questrial&display=swap');
+@font-face {
+    font-family: 'HakgyoansimWoojuR';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimWoojuR.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ChusaLove';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/ChusaLove.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'EF_cucumbersalad';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-EF@1.0/EF_cucumbersalad.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.login-overlay {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-container {
+
+    position: relative;
+    background: rgb(180, 180, 184, 0.9);
+    border-radius: 100px;
+    padding: 100px;
+    animation: dropTop 0.4s linear;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+
+}
+
+.close-button {
+
+    position: absolute;
+    top: 60px;
+    right: 110px;
+    size: 20px ;
+    cursor: pointer;
+}
+
+.header {
+
+    border-bottom: 1px solid #DFD3C3;
+    width: 550px;
+    height: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.logo {
+    
+    width: 90px;
+    height: auto;
+    margin-bottom: 95px;
+    
+}
+
+
+.login-body {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button-container {
+
+    height: 55px;
+    width: 160px;
+    border: 4px solid #B4B4B8;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #EADBC8;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+
+
+}
+
+.button-container h3 {
+    font-size: 16px;
+    cursor: pointer;
+    font-family: "Orbitron", sans-serif;
+
+}
+
+
+.contentWrap{
+    margin-top: 25px;
+    width: 90%;
+    
+}
+
+.inputWrap{
+    display: flex;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 8px;
+    background-color: white;
+    border: 1px solid #e2e0c0;
+    width: 100%;
+
+}
+
+.inputWrap-within{
+    border: 1px solid #9e30f4;
+}
+
+.input{
+    width: 100%;
+    outline: none;
+    border: none;
+    height: 17px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.input::placeholder {
+font-family: 'HakgyoansimWoojuR';
+    text-align: center;
+    font-size: 13px;
+    color: #000000;
+}
+
+.button-group{
+
+    display: flex;
+    gap: 60px;
+    margin-top: 40px;
+}
+

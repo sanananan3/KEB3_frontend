@@ -17,3 +17,67 @@ body {
     font-style: italic;
 
 }
+
+.contents_grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 가로로 4개씩 배치 */
+    grid-template-rows: repeat(2, auto); /* 세로로 2줄 */
+    column-gap: 0px; /* 가로 콘텐츠 간의 간격을 5px로 설정 */
+    row-gap: 30px; /* 세로 콘텐츠 간의 간격을 30px로 설정 */
+    margin: 20px auto; /* 그리드 전체의 상하 좌우 여백 */
+    max-width: 100%; /* layout의 너비를 넘지 않도록 설정 */
+    padding: 0 10px; /* 그리드 내부 여백을 조정하여 벗어나지 않도록 설정 */
+    box-sizing: border-box; /* padding이 너비에 포함되도록 설정 */
+}
+
+.contents_container {
+    background-color: rgba(128, 128, 128, 0.7);
+    border-radius: 16px;
+    padding-top: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 15px;
+    position: relative;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed; /* 스크롤을 하더라도 고정된 위치에 유지 */
+    bottom: 40px; /* 화면 아래에서 20px 위에 위치 */
+    left: 50%; /* 수평 중앙에 위치 */
+    transform: translateX(-50%); /* 중앙 정렬을 위한 트랜스폼 */
+    width: 234px; /* pagination div의 너비 */
+    height: 55px; /* pagination div의 높이 */
+    background-color: rgba(234, 208, 255, 0.3); /* 배경색: EAD0FF, 투명도 30% */
+    border-radius: 50px; /* 둥글기 50 설정 */
+    gap: 15px; /* 요소들 간의 간격 */
+    box-sizing: border-box;
+    z-index: 1000; /* 다른 요소 위에 표시되도록 설정 */
+}
+
+.pagination-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px; /* 버튼 크기 설정 */
+    height: 45px;
+}
+
+.pagination-btn img {
+    width: 70%; /* 이미지가 버튼 크기에 맞도록 설정 */
+    height: auto;
+}
+
+.pagination span {
+    font-size: 16px;
+    color: #333;
+    
+}

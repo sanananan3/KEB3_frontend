@@ -1,0 +1,19 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.title {
+    color: #EAD3D3; 
+    margin-left: 50px;
+    margin-top: 50px; 
+    margin-bottom: 0; 
+    font-style: bold;
+    line-height: 0.5;
+
+}
+.side_title {
+    color: #DADADA; 
+    margin-left: 90px;
+    font-style: italic;
+
+}

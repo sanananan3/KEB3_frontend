@@ -2,8 +2,8 @@ import { Scroll, useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useState } from "react";
 import './mainpage.css';
-import { AiOutlineSwapLeft } from "react-icons/ai";
-import { AiOutlineSwapRight } from "react-icons/ai";
+
+import { useNavigate } from "react-router-dom";
 
 const Section = (props) => {
   return (
@@ -26,11 +26,25 @@ const Section = (props) => {
   );
 };
 
+
+
 export const Overlay = () => {
   const scroll = useScroll();
   const [opacityFirstSection, setOpacityFirstSection] = useState(1);
   const [opacitySecondSection, setOpacitySecondSection] = useState(1);
   const [opacityLastSection, setOpacityLastSection] = useState(1);
+
+  const navigate = useNavigate();
+
+  const goToMapPage = () => {
+    navigate('/map_page');
+
+  }
+
+  const goToDateviewPage = () => {
+
+    navigate('/dateview_page');
+  }
 
   useFrame(() => {
     setOpacityFirstSection(1 - scroll.range(0, 1 / 3));
@@ -71,11 +85,11 @@ export const Overlay = () => {
           <div className="thirdWrap">
 
             <div className="image-direct">
-              <img src = "/arrow_left.png" alt = "image_arrow"/>
+              <img src = "/arrow_left.png" alt = "image_arrow" onClick={goToMapPage}/>
             </div>
 
             <div className="map-direct">
-            <img src = "/arrow_right.png" alt = "map_arrow"  />
+            <img src = "/arrow_right.png" alt = "map_arrow"  onClick={goToMapPage}/>
 
             </div>
 

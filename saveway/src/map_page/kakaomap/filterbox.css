@@ -1,0 +1,112 @@
+
+.damage-level-box {
+    position: absolute;
+    top: 25px;
+    left: 50px;
+    background-color: white;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    font-family: 'NanumBarunGothic', sans-serif;
+    font-size: 14px;
+    width: 150px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.damage-part-box {
+    position: absolute;
+    top: 25px;
+    left: 230px;
+    background-color: white;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    font-family: 'NanumBarunGothic', sans-serif;
+    font-size: 14px;
+    width: 150px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.damage-level-list {
+    position: absolute;
+    top: 65px;
+    left: 50px;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    font-family: 'NanumBarunGothic', sans-serif;
+    font-size: 14px;
+    width: 150px;
+    text-align: center;
+    line-height: 2;
+}
+
+.damage-part-list {
+    position: absolute;
+    top: 65px;
+    left: 230px;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    font-family: 'NanumBarunGothic', sans-serif;
+    font-size: 14px;
+    width: 150px;
+    text-align: left;
+    line-height: 2;
+}
+
+.damage-level-filter-group,
+.damage-part-filter-group {
+    /* display: flex; */
+    flex-direction: column;
+    align-items: flex-start;
+    align-content: center;
+    width: 20%;
+    margin-bottom: 5px;
+}
+
+.damage-level-filter-group label,
+.damage-part-filter-group label {
+    margin: 20px 0;
+    white-space: nowrap; 
+    overflow: hidden; 
+    width: 40%; 
+    justify-content: flex-start;
+}
+
+.damage-level-filter-group label input,
+.damage-part-filter-group label input {
+    margin-right: 4px; 
+}
+
+button {
+    margin-top: 0px; 
+    padding: 0px 5px;
+    background-color: #ffffff;
+    color: blue;
+    border: none;
+    cursor: pointer;
+
+}
+
+
+button:hover {
+    background-color: #e0e0e0;
+}
+
+.button {
+    display: flex;
+    justify-content: flex-end; /* This pushes the button to the right end */
+}

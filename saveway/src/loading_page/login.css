@@ -51,8 +51,8 @@
 .close-button {
 
     position: absolute;
-    top: 60px;
-    right: 110px;
+    top: 50px;
+    right: 70px;
     size: 20px ;
     cursor: pointer;
 }
@@ -70,9 +70,9 @@
 
 .logo {
     
-    width: 90px;
+    width: 60px;
     height: auto;
-    margin-bottom: 95px;
+    margin-bottom: 92px;
     
 }
 

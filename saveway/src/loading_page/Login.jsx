@@ -31,7 +31,7 @@ export const Login = ({onClose}) => {
         </div>
 
       <div className = "header">
-        <img src = "/saveway_logo.png" alt="saveway logo" className="logo" />
+        <img src = "/saveway_final_logo_2.png" alt="saveway logo" className="logo"/>
         </div>
 
       {/* Body */ }

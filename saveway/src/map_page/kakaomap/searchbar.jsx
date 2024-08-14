@@ -14,6 +14,7 @@ const SearchBar = ({ setPlace }) => {
         e.preventDefault();
         setPlace(inputText);
         setInputText('');
+        
     };
     
     return (

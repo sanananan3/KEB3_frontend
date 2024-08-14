@@ -7,7 +7,7 @@ import {Html, useAnimations} from "@react-three/drei";
 import './login.css';
 
 
-export const Login = ({onClose}) => {
+export const Login = ({ onClose, onSignUp }) => {
 
   const navigate = useNavigate(); // useNavigate 훅 사용
 
@@ -15,6 +15,16 @@ export const Login = ({onClose}) => {
 
     // login 로직 추가하기 ... 
     navigate('/main');
+
+  };
+
+  const handleSignUp = () => {
+
+    if (onSignUp) {
+      onSignUp();
+
+    }
+
 
   };
 
@@ -60,7 +70,7 @@ export const Login = ({onClose}) => {
             <h3> Log In </h3>
         </div>
 
-        <div className="button-container"> 
+        <div className="button-container" onClick={handleSignUp}> 
         <h3> Sign Up </h3>
         </div>
 

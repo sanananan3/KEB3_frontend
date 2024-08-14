@@ -27,7 +27,9 @@ function KakaoMap({ searchPlace }) {
               map.setCenter(locPosition);
 
               // 검색어에 대한 결과를 지도에 표시합니다.
+              console.log("검색지역:", searchPlace);
               ps.keywordSearch(searchPlace, placesSearchCB);
+
           });
       } else {
           // Geolocation을 사용할 수 없는 경우 기본 위치를 사용하여 검색어 결과를 표시합니다.

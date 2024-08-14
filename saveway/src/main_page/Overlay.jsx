@@ -55,9 +55,6 @@ export const Overlay = () => {
   return (
     <Scroll html>
 
-
-
-
         <Section opacity={opacityFirstSection}>
           <div className="introContent">
           <p>
@@ -85,7 +82,7 @@ export const Overlay = () => {
           <div className="thirdWrap">
 
             <div className="image-direct">
-              <img src = "/arrow_left.png" alt = "image_arrow" onClick={goToMapPage}/>
+              <img src = "/arrow_left.png" alt = "image_arrow" onClick={goToDateviewPage}/>
             </div>
 
             <div className="map-direct">

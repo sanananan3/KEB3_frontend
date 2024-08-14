@@ -1,0 +1,57 @@
+.layout-container {
+    background-size: cover;
+    background-color: #45474B;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+
+}
+
+.icon {
+    position: absolute;
+    top: 45px;
+    left: 45px;
+    cursor: pointer;
+}
+
+
+.line {
+    position: absolute;
+    top: 107px;
+    left: 29px;
+    width: calc(100% - 60px); 
+    height: 2px;
+    background-color: #767676;
+}
+
+.main {
+    position: relative;
+    width: calc(100% - 40px); 
+    height: calc(100vh - 160px);
+    background-color: #605E5F;
+    border-radius: 50px;
+    margin-top: 120px;
+    flex-grow: 1;
+}
+
+.home_icon {
+    position: absolute;
+    top: 45px;
+    left: 45px;
+    cursor: pointer;
+}
+
+.main_logo {
+    position: absolute;
+    top: 0px; 
+    left: 50%;
+    transform: translateX(-50%); 
+    z-index: 5; 
+    width: 135px; 
+    height: auto; 
+
+}

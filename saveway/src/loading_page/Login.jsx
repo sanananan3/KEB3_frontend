@@ -5,16 +5,54 @@ import { AiOutlineClose} from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
 import {Html, useAnimations} from "@react-three/drei";
 import './login.css';
+import { useUser } from '../UserProvider';
 
 
 export const Login = ({ onClose, onSignUp }) => {
 
+  const [id, setId] = useState('');
+  const [pw, setPw] = useState('');
   const navigate = useNavigate(); // useNavigate 훅 사용
+  const { setUser } = useUser(); // userContext에서 setUser 함수 가져오기 
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
 
-    // login 로직 추가하기 ... 
-    navigate('/main');
+    // login 로직
+
+    try {
+      const response = await fetch ('http://3.39.6.45:8000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type' : 'application/json',
+        },
+        body: JSON.stringify({id, pw}), // 로그인에 필요한 데이터 전송
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok.');
+      }
+
+      const result = await response.json();
+
+      console.log("result", result.success);
+
+      if (result) {
+        alert('로그인에 성공했습니다');
+        setUser(id); // 로그인한 사용자 id를 상태에 저장 
+        navigate('/main');
+      }
+
+      else {
+
+        alert ('로그인 정보가 일치하지 않습니다');
+        setId('');
+        setPw('');
+      }
+    }
+    catch(error) {
+      console.error('Error:', error);
+      alert('서버와 통신 중 오류가 발생했습니다');
+    }
 
   };
 
@@ -24,8 +62,6 @@ export const Login = ({ onClose, onSignUp }) => {
       onSignUp();
 
     }
-
-
   };
 
 
@@ -52,14 +88,16 @@ export const Login = ({ onClose, onSignUp }) => {
 
         <div className="contentWrap">
           <div className="inputWrap">
-            <input className='input' placeholder='아이디를 입력하세요'></input>
+            <input className='input' placeholder='아이디를 입력하세요'
+            value={id} onChange={(e) => setId(e.target.value)}></input>
           </div>
         </div>
 
 
       <div className='contentWrap'>
         <div className='inputWrap'>
-          <input className='input' placeholder='패스워드를 입력하세요' type="password"></input>
+          <input className='input' placeholder='패스워드를 입력하세요' type="password"
+          value={pw} onChange={(e) => setPw(e.target.value)}></input>
         </div>
       </div>
 

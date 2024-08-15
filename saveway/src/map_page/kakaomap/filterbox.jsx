@@ -1,13 +1,12 @@
-
 import React, { useState } from 'react';
 import './filterbox.css';
 import '../../styles/fonts.css';
 
-const FilterBox = () => {
+const FilterBox = ({ onFilterChange }) => {
     const [isDamageLevelVisible, setDamageLevelVisible] = useState(false);
     const [isDamagePartVisible, setDamagePartVisible] = useState(false);
-    const [selectedDamageLevels, setSelectedDamageLevels] = useState([]);
-    const [selectedDamageParts, setSelectedDamageParts] = useState([]);
+    const [tempSelectedDamageLevels, setTempSelectedDamageLevels] = useState([]);
+    const [tempSelectedDamageParts, setTempSelectedDamageParts] = useState([]);
 
     const toggleDamageLevelVisibility = () => {
         setDamageLevelVisible(!isDamageLevelVisible);
@@ -19,7 +18,7 @@ const FilterBox = () => {
 
     const handleDamageLevelChange = (event) => {
         const value = event.target.value;
-        setSelectedDamageLevels(prevState =>
+        setTempSelectedDamageLevels(prevState =>
             prevState.includes(value)
                 ? prevState.filter(item => item !== value)
                 : [...prevState, value]
@@ -28,7 +27,7 @@ const FilterBox = () => {
 
     const handleDamagePartChange = (event) => {
         const value = event.target.value;
-        setSelectedDamageParts(prevState =>
+        setTempSelectedDamageParts(prevState =>
             prevState.includes(value)
                 ? prevState.filter(item => item !== value)
                 : [...prevState, value]
@@ -36,9 +35,9 @@ const FilterBox = () => {
     };
 
     const handleSubmit = () => {
-        // Handle submit logic here
-        console.log('Selected Damage Levels:', selectedDamageLevels);
-        console.log('Selected Damage Parts:', selectedDamageParts);
+        onFilterChange(tempSelectedDamageParts);
+        setDamageLevelVisible(false);
+        setDamagePartVisible(false);
     };
 
     return (
@@ -58,9 +57,6 @@ const FilterBox = () => {
                         <label>
                             <input type="checkbox" name="damage-level" value="하" onChange={handleDamageLevelChange} /> 하
                         </label>
-                        <label>
-                            <input type="checkbox" name="damage-level" value="수리완료" onChange={handleDamageLevelChange} /> 수리완료
-                        </label>
                     </div>
                     <hr/>
                     <div className='button'>
@@ -75,22 +71,12 @@ const FilterBox = () => {
             {isDamagePartVisible && (
                 <div className="damage-part-list">
                     <div className="damage-part-filter-group">
-                        <label><input type="checkbox" name="damage-part" value="도로파손" onChange={handleDamagePartChange} /> 도로파손</label>
-                        <label>
-                            <input type="checkbox" name="damage-part" value="라바콘" onChange={handleDamagePartChange} /> 라바콘
-                        </label>
-                        <label>
-                            <input type="checkbox" name="damage-part" value="시선유도봉" onChange={handleDamagePartChange} /> 시선유도봉
-                        </label>
-                        <label>
-                            <input type="checkbox" name="damage-part" value="PE안내봉" onChange={handleDamagePartChange} /> PE안내봉
-                        </label>
-                        <label>
-                            <input type="checkbox" name="damage-part" value="PE방호벽" onChange={handleDamagePartChange} /> PE방호벽
-                        </label>
-                        <label>
-                            <input type="checkbox" name="damage-part" value="PE드럼" onChange={handleDamagePartChange} /> PE드럼
-                        </label>
+                        <label><input type="checkbox" name="damage-part" value="PE방호벽" onChange={handleDamagePartChange} /> PE방호벽</label>
+                        <label><input type="checkbox" name="damage-part" value="PE안내봉" onChange={handleDamagePartChange} /> PE안내봉</label>
+                        <label><input type="checkbox" name="damage-part" value="PE드럼" onChange={handleDamagePartChange} /> PE드럼</label>
+                        <label><input type="checkbox" name="damage-part" value="포트홀" onChange={handleDamagePartChange} /> 포트홀</label>
+                        <label><input type="checkbox" name="damage-part" value="라바콘" onChange={handleDamagePartChange} /> 라바콘</label>
+                        <label><input type="checkbox" name="damage-part" value="시선유도봉" onChange={handleDamagePartChange} /> 시선유도봉</label>
                     </div>
                     <hr/>
                     <div className='button'>
@@ -98,8 +84,6 @@ const FilterBox = () => {
                     </div>
                 </div>
             )}
-
-            
         </>
     );
 };

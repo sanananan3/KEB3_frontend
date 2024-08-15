@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import data from './../data/data';
 import { Layout } from './../layout/layout';
@@ -12,14 +12,14 @@ import { useLocation } from 'react-router-dom';
 const RefinePage = () => {
 
     const location = useLocation();
-    const { imageOrigin } = location.state;
+    const { imageOrigin: initialImageOrigin } = location.state;
     const { id } = useParams();
+    const [imageOrigin, setImageOrigin] = useState(initialImageOrigin); // imageOrigin을 상태로 관리
     const [selectedPhotos, setSelectedPhotos] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 12;  // Display 12 images per page (6*2 grid)
     const [selectPopup, setSelectPopup] = useState(false);
-    const [selectedImageIndex, setSelectedImageIndex] = useState(null);
-
+    const [selectImageIndex, setSelectImageIndex] = useState(null);
 
     const handleNextPage = () => {
         if (currentPage < Math.ceil(imageOrigin.length / itemsPerPage)) {
@@ -27,13 +27,11 @@ const RefinePage = () => {
         }
     };
 
-
     const handlePopup = (index) => {
-        // 여기까지는 들어감
-        setSelectedImageIndex(index); 
+        setSelectImageIndex(index);
+
         setSelectPopup(true);
         console.log("Popup state:", selectPopup);
-        
     };   
 
     const handlePreviousPage = () => {
@@ -50,23 +48,42 @@ const RefinePage = () => {
         );
     };
 
-    const handleDelete = () => {
-        const remainingPhotos = imageOrigin.filter((_, index) => !selectedPhotos.includes(index));
-        setSelectedPhotos([]);
+    const handleDelete = async () => {
+        try {
+            // 선택된 사진들을 반복하면서 각각의 사진에 대해 DELETE 요청을 보냅니다.
+            for (const photoIndex of selectedPhotos) {
+                const image = imageOrigin[photoIndex];
+    
+                const response = await fetch(`http://3.39.6.45:8000/images/${image.id}`, {
+                    method: 'DELETE',
+                });
+    
+                if (!response.ok) {
+                    console.error(`id가 ${image.id}인 이미지를 삭제하는 데 실패했습니다.`);
+                }
+            }
+    
+            const remainingPhotos = imageOrigin.filter((_, index) => !selectedPhotos.includes(index));
+            setImageOrigin(remainingPhotos); 
+            setSelectedPhotos([]); 
+        } catch (error) {
+            console.error('이미지를 삭제하는 동안 오류가 발생했습니다:', error);
+        }
     };
 
-    // Calculate the range of photos to display based on the current page
     const startIndex = (currentPage - 1) * itemsPerPage;
+    const selectedPhotosToDisplay = imageOrigin.slice(startIndex, startIndex + itemsPerPage);
 
     return (
         <Layout>
             <Delete onDelete={handleDelete} />
             <h1 className='title'>○ IMAGE REFINEMENT</h1>
-            <h4 className='side_title'>Refine Images for {imageOrigin[0].date}</h4>
+            <h4 className='side_title'>Refine Images for {imageOrigin[0]?.date}</h4>
             <div className='image_grid'>
-                {imageOrigin.map((image, index) => (
+                {selectedPhotosToDisplay.map((image, index) => (
                     <div key={startIndex + index} className='image_item'>
-                        <img src={image.url} alt={`Image ${index}`} onClick={()=> handlePopup(startIndex + index)} />
+                        <img src={image.url} alt={`Image ${index}`} onClick={() => handlePopup(startIndex+index)} />
+
                         <input 
                             type="checkbox" 
                             checked={selectedPhotos.includes(startIndex + index)} 
@@ -98,12 +115,15 @@ const RefinePage = () => {
 
             {selectPopup && 
             (<PopupInside onClose={() => setSelectPopup(false)}
-            image={imageOrigin}
+
+            image = {imageOrigin}
             totalImages={imageOrigin.length}
-            currentIndex = {selectedImageIndex} />)} 
+            currentIndex = {selectImageIndex} />)} 
+
 
         </Layout>
     );
 };
 
 export default RefinePage;
+

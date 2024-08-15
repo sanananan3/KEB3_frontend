@@ -70,8 +70,41 @@ const DateView = () => {
         );
     };
 
-    const handleNavigateToRefinePage = (id) => {
-        navigate(`/refine_page/${id}`);
+    const handleNavigateToRefinePage = async (date) => {
+       try{
+        // 1. 해당 날짜에 속한 이미지 id 가져오기 
+        const selectedGroup = groupedItems.find(item=> item.date === date);
+        if (!selectedGroup) return;
+
+        // 2. 각 이미지 id에 대해 원본 이미지 데이터 가져오기 
+
+        const imageOrigin = await Promise.all(
+            selectedGroup.items.map(async (item) => {
+                const response = await fetch (`http://3.39.6.45:8000/images/get/${item.id}`);
+                
+                // 이미지라서 json으로 받아오면 안되고 blob 데이터로 받아와야 함 
+
+                const blob = await response.blob();
+
+                // blob 데이터를 base64로 변환 
+
+                const base64Image = await new Promise((resolve, reject ) => {
+                    const reader = new FileReader();
+                    reader.onloadend = () => resolve(reader.result);
+                    reader.onerror = reject;
+                    reader.readAsDataURL(blob);
+                });
+             
+                return {id: item.id, url: base64Image, date: date} ;
+              // image id와 url 반환
+            })
+        );
+        
+        navigate('/refine_page', {state: {imageOrigin}}); // refine 페이지로 이동하면서 이미지 원본 데이터 전달
+
+       } catch (error) {
+        console.error ('Error fetching original image', error);
+       }
     };
 
     const handleDelete = () => {
@@ -97,7 +130,7 @@ const DateView = () => {
                         isEven={index % 2 === 0}
                         onSelect={handleSelectItem}
                         isSelected={selectedItems.includes(item.date)}
-                        onNavigate={() => handleNavigateToRefinePage(item.items[0].id)}
+                        onNavigate={() => handleNavigateToRefinePage(item.date)}
                     />
                 ))}
             </div>

@@ -7,9 +7,12 @@ import './image_refine_page.css';
 import pageLeft from './../assets/page_left.png'; 
 import pageRight from './../assets/page_right.png'; 
 import { PopupInside } from '../image_popup/PopupInside';
+import { useLocation } from 'react-router-dom';
 
 const RefinePage = () => {
 
+    const location = useLocation();
+    const { imageOrigin } = location.state;
     const { id } = useParams();
     const [selectedPhotos, setSelectedPhotos] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
@@ -20,7 +23,7 @@ const RefinePage = () => {
     const item = data.find(item => item.id === parseInt(id));
 
     const handleNextPage = () => {
-        if (currentPage < Math.ceil(item.photos.length / itemsPerPage)) {
+        if (currentPage < Math.ceil(imageOrigin.length / itemsPerPage)) {
             setCurrentPage(currentPage + 1);
         }
     };
@@ -30,6 +33,7 @@ const RefinePage = () => {
         // 여기까지는 들어감 
         setSelectPopup(true);
         console.log("Popup state:", selectPopup);
+        
     };   
 
     const handlePreviousPage = () => {
@@ -47,10 +51,8 @@ const RefinePage = () => {
     };
 
     const handleDelete = () => {
-        if (item) {
-            item.photos = item.photos.filter((_, index) => !selectedPhotos.includes(index));
-            setSelectedPhotos([]);
-        }
+        const remainingPhotos = imageOrigin.filter((_, index) => !selectedPhotos.includes(index));
+        setSelectedPhotos([]);
     };
 
     // Calculate the range of photos to display based on the current page
@@ -61,19 +63,19 @@ const RefinePage = () => {
         <Layout>
             <Delete onDelete={handleDelete} />
             <h1 className='title'>○ IMAGE REFINEMENT</h1>
-            <h4 className='side_title'>Refine Images for {item?.date}</h4>
+            <h4 className='side_title'>Refine Images for {imageOrigin[0].date}</h4>
             <div className='image_grid'>
-                {selectedPhotosToDisplay?.map((photo, index) => (
+                {imageOrigin.map((image, index) => (
                     <div key={startIndex + index} className='image_item'>
-                        <img src={photo.path} alt={photo.type} onClick={handlePopup} />
+                        <img src={image.url} alt={`Image ${index}`} onClick={handlePopup} />
                         <input 
                             type="checkbox" 
                             checked={selectedPhotos.includes(startIndex + index)} 
                             onChange={() => handleSelectPhoto(startIndex + index)} 
                             className="photo-checkbox"
                         />
-                        <p>{photo.type}</p>
-                        <p>{photo.gpsLocation}</p>
+                        <p>{image.type}</p>
+                        <p>{image.gpsLocation}</p>
                     </div>
                 ))}
             </div>
@@ -88,7 +90,7 @@ const RefinePage = () => {
                 <span>Page {currentPage}</span>
                 <button 
                     onClick={handleNextPage} 
-                    disabled={currentPage >= Math.ceil(item.photos.length / itemsPerPage)} 
+                    disabled={currentPage >= Math.ceil(imageOrigin.length / itemsPerPage)} 
                     className="pagination-btn"
                 >
                     <img src={pageRight} alt="Next Page" />

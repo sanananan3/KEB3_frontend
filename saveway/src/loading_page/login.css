@@ -48,6 +48,32 @@
 
 }
 
+.signup-overlay {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signup-container {
+
+    position: relative;
+    background: rgba(203, 194, 194, 0.9);
+    border-radius: 100px;
+    padding: 100px;
+    animation: dropTop 0.4s linear;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+
+}
+
 .close-button {
 
     position: absolute;
@@ -105,6 +131,30 @@
     font-size: 16px;
     cursor: pointer;
     font-family: "Orbitron", sans-serif;
+
+}
+
+
+.save-container {
+
+    height: 55px;
+    width: 160px;
+    border: 4px solid #B4B4B8;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #EADBC8;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    margin-left: 200px;
+
+
+}
+
+
+.save-container h3{
+    font-family: "HakgyoansimWoojuR";
 
 }
 

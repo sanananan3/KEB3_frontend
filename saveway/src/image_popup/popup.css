@@ -64,7 +64,6 @@ html, body {
     margin-right: 30px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 
 }
@@ -78,13 +77,16 @@ html, body {
 .image-container .image-number {
 
     display: flex;
+  
 
 }
 
 .image-container .image-number p {
 
 
+    margin-top: 35px;
     margin-right: 10px;
+    margin-bottom: 20px;
     font-weight: 600;
     color: #6C6363;
     font-size: 14px;
@@ -92,9 +94,17 @@ html, body {
 }
 
 
+.image-line {
+    height: 1px; /* 라인의 두께 */
+    width: 80%; /* 라인의 너비 */
+    background-color: #b7a6a6; /* 라인의 색상, 예: 검정색 */
+     /* 위와 아래에 여백 추가 */
+     margin-bottom: 40px;
+}
+
 .image-container .images {
 
-    width: 30%;
+    width: 35%;
 
 }
 
@@ -214,12 +224,7 @@ html, body {
 }
 
 
-.image-line {
-    height: 1px; /* 라인의 두께 */
-    width: 80%; /* 라인의 너비 */
-    background-color: #b7a6a6; /* 라인의 색상, 예: 검정색 */
-    margin: 20px 0; /* 위와 아래에 여백 추가 */
-}
+
 
 
 

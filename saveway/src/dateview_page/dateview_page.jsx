@@ -107,11 +107,34 @@ const DateView = () => {
        }
     };
 
-    const handleDelete = () => {
-        // 선택된 날짜에 해당하는 모든 아이템을 삭제
-        const remainingItems = groupedItems.filter(item => !selectedItems.includes(item.date));
-        setGroupedItems(remainingItems);
-        setSelectedItems([]); // 삭제 후 선택 상태 초기화
+
+    const handleDelete = async () => {
+        try {
+            // Iterate over selected items and make a DELETE request for each
+            for (const date of selectedItems) {
+                const itemsToDelete = groupedItems.find(item => item.date === date)?.items;
+
+                if (itemsToDelete) {
+                    for (const image of itemsToDelete) {
+                        const response = await fetch(`http://3.39.6.45:8000/images/${image.id}`, {
+                            method: 'DELETE',
+                        });
+
+                        if (!response.ok) {
+                            console.error(`Failed to delete image with id ${image.id}`);
+                            // Handle the error as needed, e.g., show a notification
+                        }
+                    }
+                }
+            }
+
+            // After successful deletion, update the state to remove deleted items
+            const remainingItems = groupedItems.filter(item => !selectedItems.includes(item.date));
+            setGroupedItems(remainingItems);
+            setSelectedItems([]); // Clear the selection after deletion
+        } catch (error) {
+            console.error('Error deleting items:', error);
+        }
     };
 
     return (

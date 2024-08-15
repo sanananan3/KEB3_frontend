@@ -5,10 +5,12 @@ import user_button from './../assets/user.png';
 import logout_icon from './../assets/logout_icon.png';
 import './user_info.css';
 import './../styles/fonts.css';
+import { useUser } from '../UserProvider';
 
-const UserInfo = ({ username, handleLogout }) => {
+const UserInfo = ({ handleLogout }) => {
 
     const navigate = useNavigate();
+    const { user } = useUser();
 
     const handleLogoutClick = () => {
         if (handleLogout) {
@@ -42,7 +44,7 @@ const UserInfo = ({ username, handleLogout }) => {
                 className="box_image" 
             />
             <div className="user_section" >
-                <span className="button_text user_text">{username}</span>
+                <span className="button_text user_text">{user}</span>
             </div>
 
 

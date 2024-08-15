@@ -2,8 +2,8 @@ import { Scroll, useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useState } from "react";
 import './mainpage.css';
-
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../UserProvider";
 
 const Section = (props) => {
   return (
@@ -29,6 +29,8 @@ const Section = (props) => {
 
 
 export const Overlay = () => {
+
+  const { user } = useUser(); // 사용자 정보 가져오기  
   const scroll = useScroll();
   const [opacityFirstSection, setOpacityFirstSection] = useState(1);
   const [opacitySecondSection, setOpacitySecondSection] = useState(1);
@@ -58,7 +60,7 @@ export const Overlay = () => {
         <Section opacity={opacityFirstSection}>
           <div className="introContent">
           <p>
-            반갑습니다, sananan님
+            반갑습니다, {user}님
           </p>
           </div>
   

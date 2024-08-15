@@ -2,6 +2,7 @@
 import React from 'react';
 import './contents.css';
 import personIcon from './../assets/person_icon.png';
+import DateView from './dateview_page';
 
 const Contents = ({ id, date, userName, photoCount, isEven, onSelect, isSelected, onNavigate }) => {
     // isEven에 따라 배경색 결정
@@ -9,6 +10,7 @@ const Contents = ({ id, date, userName, photoCount, isEven, onSelect, isSelected
     const handleDivClick = (e) => {
         if (e.target.type !== 'checkbox') {
             onNavigate(id);
+
         }
     };
 

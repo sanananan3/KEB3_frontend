@@ -6,12 +6,16 @@ import { Delete } from './../layout/delete';
 import './image_refine_page.css';
 import pageLeft from './../assets/page_left.png'; 
 import pageRight from './../assets/page_right.png'; 
+import { PopupInside } from '../image_popup/PopupInside';
 
 const RefinePage = () => {
+
     const { id } = useParams();
     const [selectedPhotos, setSelectedPhotos] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 12;  // Display 12 images per page (6*2 grid)
+    const [selectPopup, setSelectPopup] = useState(false);
+
 
     const item = data.find(item => item.id === parseInt(id));
 
@@ -20,6 +24,13 @@ const RefinePage = () => {
             setCurrentPage(currentPage + 1);
         }
     };
+
+
+    const handlePopup = () => {
+        // 여기까지는 들어감 
+        setSelectPopup(true);
+        console.log("Popup state:", selectPopup);
+    };   
 
     const handlePreviousPage = () => {
         if (currentPage > 1) {
@@ -54,7 +65,7 @@ const RefinePage = () => {
             <div className='image_grid'>
                 {selectedPhotosToDisplay?.map((photo, index) => (
                     <div key={startIndex + index} className='image_item'>
-                        <img src={photo.path} alt={photo.type} />
+                        <img src={photo.path} alt={photo.type} onClick={handlePopup} />
                         <input 
                             type="checkbox" 
                             checked={selectedPhotos.includes(startIndex + index)} 
@@ -83,6 +94,9 @@ const RefinePage = () => {
                     <img src={pageRight} alt="Next Page" />
                 </button>
             </div>
+
+            {selectPopup && <PopupInside onClose={() => setSelectPopup(false)} />} 
+
         </Layout>
     );
 };

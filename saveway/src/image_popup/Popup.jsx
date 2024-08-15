@@ -3,14 +3,13 @@ import {Layout} from './../layout/layout';
 import './popup.css';
 import { PopupInside } from './PopupInside';
 
-const Popup = ()=> {
+const Popup = ({onClose})=> {
 
     
     return (
-
-        <Layout>
+            
             <PopupInside />
-        </Layout>
+
     );
 
 };

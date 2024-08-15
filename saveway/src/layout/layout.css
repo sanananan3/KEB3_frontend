@@ -1,3 +1,5 @@
+
+
 .layout-container {
     background-size: cover;
     background-color: #45474B;
@@ -35,7 +37,6 @@
     background-color: #605E5F;
     border-radius: 50px;
     margin-top: 120px;
-    margin-bottom: 50px; /* 필요에 따라 아래쪽 여백 추가 */
     flex-grow: 1;
 }
 

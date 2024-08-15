@@ -16,10 +16,15 @@ function KakaoMap({ searchPlace }) {
         const map = new kakao.maps.Map(container, options);
         const ps = new kakao.maps.services.Places()
 
+
         if (navigator.geolocation) {
+
+    
           navigator.geolocation.getCurrentPosition(function(position) {
+
               const lat = position.coords.latitude; // 위도
               const lon = position.coords.longitude; // 경도
+
 
               const locPosition = new kakao.maps.LatLng(lat, lon); // 현재 위치를 LatLng 객체로 변환
 
@@ -27,7 +32,7 @@ function KakaoMap({ searchPlace }) {
               map.setCenter(locPosition);
 
               // 검색어에 대한 결과를 지도에 표시합니다.
-              console.log("검색지역:", searchPlace);
+
               ps.keywordSearch(searchPlace, placesSearchCB);
 
           });

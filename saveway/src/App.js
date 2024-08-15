@@ -6,7 +6,6 @@ import MainPage from './main_page/MainPage';
 import Home from './map_page/home';
 import Map from './map_page/map_page';
 import DateView from './dateview_page/dateview_page';
-import Popup from "./image_popup/Popup";
 import RefinePage from "./image_refine/image_refine_page";
 
 function App() {

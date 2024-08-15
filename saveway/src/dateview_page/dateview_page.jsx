@@ -95,6 +95,7 @@ const DateView = () => {
                     reader.readAsDataURL(blob);
                 });
              
+                console.log("base64image", base64Image);
                 return {id: item.id, url: base64Image, date: date} ;
               // image id와 url 반환
             })

@@ -18,9 +18,8 @@ const RefinePage = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 12;  // Display 12 images per page (6*2 grid)
     const [selectPopup, setSelectPopup] = useState(false);
+    const [selectedImageIndex, setSelectedImageIndex] = useState(null);
 
-
-    const item = data.find(item => item.id === parseInt(id));
 
     const handleNextPage = () => {
         if (currentPage < Math.ceil(imageOrigin.length / itemsPerPage)) {
@@ -29,8 +28,9 @@ const RefinePage = () => {
     };
 
 
-    const handlePopup = () => {
-        // 여기까지는 들어감 
+    const handlePopup = (index) => {
+        // 여기까지는 들어감
+        setSelectedImageIndex(index); 
         setSelectPopup(true);
         console.log("Popup state:", selectPopup);
         
@@ -57,7 +57,6 @@ const RefinePage = () => {
 
     // Calculate the range of photos to display based on the current page
     const startIndex = (currentPage - 1) * itemsPerPage;
-    const selectedPhotosToDisplay = item?.photos.slice(startIndex, startIndex + itemsPerPage);
 
     return (
         <Layout>
@@ -67,7 +66,7 @@ const RefinePage = () => {
             <div className='image_grid'>
                 {imageOrigin.map((image, index) => (
                     <div key={startIndex + index} className='image_item'>
-                        <img src={image.url} alt={`Image ${index}`} onClick={handlePopup} />
+                        <img src={image.url} alt={`Image ${index}`} onClick={()=> handlePopup(startIndex + index)} />
                         <input 
                             type="checkbox" 
                             checked={selectedPhotos.includes(startIndex + index)} 
@@ -97,7 +96,11 @@ const RefinePage = () => {
                 </button>
             </div>
 
-            {selectPopup && <PopupInside onClose={() => setSelectPopup(false)} />} 
+            {selectPopup && 
+            (<PopupInside onClose={() => setSelectPopup(false)}
+            image={imageOrigin}
+            totalImages={imageOrigin.length}
+            currentIndex = {selectedImageIndex} />)} 
 
         </Layout>
     );

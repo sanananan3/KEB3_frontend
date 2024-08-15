@@ -2,6 +2,7 @@ import React from 'react';
 import './popup.css';
 import { AiOutlineClose } from "react-icons/ai";
 import CustomSelect from './CustomSelect';
+import CustomSelectD from './CustomSelectD';
 
 export const PopupInside = ({ onClose }) => {
     return (
@@ -60,6 +61,14 @@ export const PopupInside = ({ onClose }) => {
                             <CustomSelect />
                         </div>
                     </div>
+
+                    <div className='damage_degree'>
+                        <div className='damage_degree_label'>
+                            <p>파손 정도</p>
+                            <CustomSelectD />
+                        </div>
+                    </div>
+
 
                   <div className='save_button'>
                     <img src='/save_button.png' alt='save_button'></img>

@@ -20,6 +20,7 @@ import {Cloud_4} from "./background/Cloud_4";
 
 import { FloatingGrid } from "./background/FloatingGrid";
 import { Login } from "./Login";
+import { SignUp } from "./SignUp";
 import {Html} from "@react-three/drei";
 
 
@@ -57,10 +58,30 @@ const Background = () => {
 export const LoadInside = () => {
 
     const [position, setPosition] = useState({x:-5,y:1,z:50});
-    const [showLoginPopup, setShowLoginPopup] = useState(false);
+    const [isLoginOpen, setIsLoginOpen] = useState(false); // 로그인 팝업 열기/닫기 상태
+    const [loginShownOnce, setLoginShownOnce] = useState(false);
+    const [isSignUpOpen, setIsSignUpOpen] = useState(false); // 가입 팝업 열기/닫기 상태
     const startTime = useRef();
     const initialLoadComplete = useRef(false);
     
+
+
+  const handleLoginClose = () => {
+    setIsLoginOpen(false);
+  };
+
+  const handleSignUpOpen = () => {
+    setIsLoginOpen(false);
+    setIsSignUpOpen(true);
+  };
+
+  const handleSignUpClose = () => {
+    setIsSignUpOpen(false);
+    setIsLoginOpen(true);
+  };
+
+
+
     // useFrame => 프레임 단위로 처리 
     // useEffect => 컴포넌트의 생명주기 동안 특정 작업을 수행하기 위해 사용하는 Hook 
     //
@@ -90,17 +111,15 @@ export const LoadInside = () => {
 
             else if (elapsedTime >= 6 && elapsedTime < 7) {
                 setPosition((prev) => ({ ...prev, z: 100 }));
-            } else if (elapsedTime >= 14) {
-                setShowLoginPopup(true); // 로그인 팝업창 뜨게 하기 
+            } else if (elapsedTime >= 14 && !loginShownOnce) {
+                setIsLoginOpen(true); // 로그인 팝업창 뜨게 하기 
+                setLoginShownOnce(true); // 로그인 팝업이 한 번 열렸다고 표시 
             }
             
         }
     });
 
-    const handleClosePopup = () => {
-        setShowLoginPopup(false);
 
-    };
 
     return (
         <>
@@ -147,8 +166,8 @@ export const LoadInside = () => {
 
             {/* Login Popup - 2D  */}
 
-            {showLoginPopup && <Login onClose = {handleClosePopup} /> }
-
+            {isLoginOpen && <Login onClose={handleLoginClose} onSignUp={handleSignUpOpen} />}
+            {isSignUpOpen && <SignUp onClose={handleSignUpClose} />}
 
         </>
     )

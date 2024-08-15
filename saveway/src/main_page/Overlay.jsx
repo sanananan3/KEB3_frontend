@@ -55,9 +55,6 @@ export const Overlay = () => {
   return (
     <Scroll html>
 
-
-
-
         <Section opacity={opacityFirstSection}>
           <div className="introContent">
           <p>

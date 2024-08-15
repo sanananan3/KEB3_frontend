@@ -58,7 +58,8 @@ const Background = () => {
 export const LoadInside = () => {
 
     const [position, setPosition] = useState({x:-5,y:1,z:50});
-    const [isLoginOpen, setIsLoginOpen] = useState(true); // 로그인 팝업 열기/닫기 상태
+    const [isLoginOpen, setIsLoginOpen] = useState(false); // 로그인 팝업 열기/닫기 상태
+    const [loginShownOnce, setLoginShownOnce] = useState(false);
     const [isSignUpOpen, setIsSignUpOpen] = useState(false); // 가입 팝업 열기/닫기 상태
     const startTime = useRef();
     const initialLoadComplete = useRef(false);
@@ -110,8 +111,9 @@ export const LoadInside = () => {
 
             else if (elapsedTime >= 6 && elapsedTime < 7) {
                 setPosition((prev) => ({ ...prev, z: 100 }));
-            } else if (elapsedTime >= 14) {
+            } else if (elapsedTime >= 14 && !loginShownOnce) {
                 setIsLoginOpen(true); // 로그인 팝업창 뜨게 하기 
+                setLoginShownOnce(true); // 로그인 팝업이 한 번 열렸다고 표시 
             }
             
         }

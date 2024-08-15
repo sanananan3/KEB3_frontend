@@ -9,8 +9,6 @@ export const PopupInside = ({ onClose }) => {
 
             <div className="ImageContent">
                 
-          
-       
                 <div className='navigate_before'>
                     <img src = '/navigate_before_3.png' alt = "navigate_before" />
                 </div>

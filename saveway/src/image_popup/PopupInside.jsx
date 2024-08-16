@@ -4,10 +4,53 @@ import { AiOutlineClose } from "react-icons/ai";
 import CustomSelect from './CustomSelect';
 import CustomSelectD from './CustomSelectD';
 
+const KAKAO_API_KEY = '15f59f6649931def45a278eedf761891'; // 카카오 맵 REST API 키 
+
+const fetchAddressFromCoordinates = async (latitude, longtitude) => {
+
+    try {
+        const response = await fetch(`https://dapi.kakao.com/v2/local/geo/coord2regioncode.json?x=${longtitude}&y=${latitude}`,
+            {
+                headers: {
+                    Authorization: `KakaoAK ${KAKAO_API_KEY}`
+                }
+            });
+
+            const data = await response.json();
+            if (data.documents && data.documents.length > 0 ){
+                const region = data.documents[1];
+            
+                return {
+                    region_1depth_name: region.region_1depth_name, // 시/도
+                    region_2depth_name: region.region_2depth_name, // 구/군
+                    region_3depth_name: region.region_3depth_name // 동/읍/면
+                    
+                };
+                
+                
+            } else {
+                return '주소를 찾을 수 없습니다';
+            }
+    } catch (error) {
+        console.error('Error fetching address', error);
+        return '주소를 찾을 수 없습니다.';
+    }
+}
+
+
 export const PopupInside = ({ onClose, image, totalImages, currentIndex }) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(currentIndex);
     const [damageType, setDamageType] = useState(null);
     const [damageDegree, setDamageDegree] = useState(null);
+
+    const [address, setAddress] = useState(
+        {
+    
+            region_1depth_name:'',
+            region_2depth_name:'',
+            region_3depth_name:'',
+        }
+    );
 
     const damageTypeMap = {
         0: "PE방호벽",
@@ -23,12 +66,45 @@ export const PopupInside = ({ onClose, image, totalImages, currentIndex }) => {
     );
 
     const fetchClassificationResult = async (index) => {
+
         try {
+            console.log("index", image[index].id);
             const response = await fetch(`http://3.39.6.45:8000/images/${image[index].id}`);
             const data = await response.json();
             const classificationResult = parseInt(data.classification_result, 10);
             setDamageType(damageTypeMap[classificationResult]); // DB에서 가져온 값 설정
-            setDamageDegree(null);  // 새로운 이미지로 변경될 때 damageDegree 초기화
+
+            // 여기는 파손 정도 불러오기.. 
+
+            const degreeResponse = await fetch(`http://3.39.6.45:8000/getDetails`);
+            const degreeData = await degreeResponse.json();
+
+            // 현재 이미지 id와 일치하는 image-id를 가진 데이터 찾기.. 
+            const matchingDegree = degreeData.find(degree=> degree.image_id === image[index].id);
+
+            // 파손 정도 설정 
+
+            if (matchingDegree && matchingDegree.details) {
+                console.log('들어왔따');
+                setDamageDegree(matchingDegree.details); // default 값으로 띄우기 
+            }
+            else{
+                console.log(image[index].id);
+                console.log("degreedata", degreeData, degreeResponse);
+                console.log("matching.. ", matchingDegree);
+                console.log('들어왔따 여기에');
+
+                setDamageDegree(null); // 없을 경우 null => place holder 띄우기 
+            }
+
+            if(data.gps && data.gps.length > 0) {
+                const {latitude, longitude} = data.gps[0];
+                const addressData = await fetchAddressFromCoordinates(latitude, longitude);
+                setAddress(addressData);
+          }
+            else {
+                setAddress('GPS 정보가 없습니다');
+            }
         } catch (error) {
             console.error("Error fetching classification result", error);
         }
@@ -73,6 +149,7 @@ export const PopupInside = ({ onClose, image, totalImages, currentIndex }) => {
             if (response.ok) {
                 alert('변경된 정보가 저장되었습니다');
                 console.log('image_id',image[currentImageIndex].id );
+                onClose();
             } else {
                 const errorData = await response.json();
                 console.log("Error details:", errorData);
@@ -118,8 +195,11 @@ export const PopupInside = ({ onClose, image, totalImages, currentIndex }) => {
                             </div> <p>{image[currentImageIndex].date}</p> </div>
 
                         <div className='imageinfo_wrap'>
-                            <div className='imageinfo_content'>  <p> 파손 장소</p>
-                            </div>  <p>{image[currentImageIndex].gpsLocation}</p> </div>
+                            <div className='imageinfo_content'>  <p> 파손 장소</p></div>  
+                            <p>     <span className='depth-item'>{address.region_1depth_name}</span>
+                                    <span className='depth-item'>{address.region_2depth_name}</span>
+                                    <span className='depth-item'>{address.region_3depth_name}</span></p> 
+                        </div>
                     </div>
 
                     <div className='damage_type'>
@@ -136,7 +216,7 @@ export const PopupInside = ({ onClose, image, totalImages, currentIndex }) => {
                         <div className='damage_degree_label'>
                             <p>파손 정도</p>
                             <CustomSelectD 
-                                placeholder="파손 정도를 선택하세요" 
+                                defaultValue={damageDegree}
                                 onChange={(selectedOption) => setDamageDegree(selectedOption.value)} 
                             />
                         </div>

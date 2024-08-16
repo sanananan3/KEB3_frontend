@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 
-const CustomSelectD = ({ onChange, placeholder }) => {
+const CustomSelectD = ({ onChange, defaultValue }) => {
     const options = [
         { value: "상", label: "상" },
         { value: "중", label: "중" },
@@ -10,6 +10,18 @@ const CustomSelectD = ({ onChange, placeholder }) => {
 
     const [selectOption, setSelectOption] = useState(null);
 
+    useEffect(()=> {
+        if(defaultValue) {
+            const selectedOption = options.find(option => option.value === defaultValue);
+            setSelectOption(selectedOption);
+        }
+        else {
+            setSelectOption(null);
+        }
+    }, [defaultValue]);
+
+
+    
     const handleChange = (option) => {
         setSelectOption(option);
         if (onChange) {
@@ -50,7 +62,7 @@ const CustomSelectD = ({ onChange, placeholder }) => {
         <Select
             options={options}
             onChange={handleChange}
-            placeholder={placeholder}
+            placeholder={defaultValue ? undefined : "파손 정도를 선택하세요"}
             value={selectOption}
             styles={customStyles}
         />

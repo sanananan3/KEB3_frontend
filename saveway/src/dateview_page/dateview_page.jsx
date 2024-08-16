@@ -149,7 +149,7 @@ const DateView = () => {
                         key={item.date}
                         id={item.date}
                         date={item.date}
-                        userName="User" // userName을 개별 이미지에서 가져오려면 item.items[0].filename.split('_')[0] 등을 사용 가능 //이미지수집방법으로 변경예정
+                        userName="신고 촬영" // userName을 개별 이미지에서 가져오려면 item.items[0].filename.split('_')[0] 등을 사용 가능 //이미지수집방법으로 변경예정
                         photoCount={item.photoCount}
                         isEven={index % 2 === 0}
                         onSelect={handleSelectItem}

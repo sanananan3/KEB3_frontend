@@ -197,6 +197,10 @@ html, body {
     
 
 }
+
+.depth-item {
+    margin-right: 4px; /* 각 항목 사이의 간격을 조절 */
+}
  
 .imageinfo_wrap .imageinfo_content p {
 

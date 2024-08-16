@@ -84,13 +84,18 @@ export const Overlay = () => {
           <div className="thirdWrap">
 
             <div className="image-direct">
-              <img src = "/arrow_left.png" alt = "image_arrow" onClick={goToDateviewPage}/>
+              <img src = "/left_arrow_f.png"  className="arrow_left_image" alt = "image_arrow" onClick={goToDateviewPage}/>
+              <div className="image_label"><p>이미지 정제 페이지로 이동</p></div>
             </div>
+
+      
 
             <div className="map-direct">
-            <img src = "/arrow_right.png" alt = "map_arrow"  onClick={goToMapPage}/>
-
+            <img src = "/arrow_right_f.png" alt = "map_arrow"  onClick={goToMapPage}/>
+            <div className="map_label"><p>지도 페이지로 이동</p></div>
             </div>
+
+        
 
           </div>
 

@@ -7,12 +7,17 @@ import './dateview_page.css';
 import './../styles/fonts.css';
 import pageLeft from './../assets/page_left.png'; 
 import pageRight from './../assets/page_right.png'; 
+import { GradientType } from '@react-three/drei';
 
 const DateView = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 8; // 한 페이지에 표시할 항목 수 (4 * 2)
     const [selectedItems, setSelectedItems] = useState([]); // 선택된 항목을 관리하는 상태
     const [groupedItems, setGroupedItems] = useState([]); // 날짜별로 그룹화된 아이템을 저장
+
+    // 날짜 별 + 신고 유형별 아이템도 저장해야됌 
+
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -21,8 +26,7 @@ const DateView = () => {
             try {
                 const response = await fetch('http://13.124.159.202:8000/images/total');
                 const data = await response.json();
-                const grouped = groupByDate(data.total_images);
-                console.log("grouped", grouped);
+                const grouped = groupByDateAndType(data.total_images);
                 setGroupedItems(grouped);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -32,14 +36,18 @@ const DateView = () => {
         fetchData();
     }, []);
 
-    const groupByDate = (images) => {
+    const groupByDateAndType = (images) => {
         const grouped = images.reduce((acc, image) => {
             const date = new Date(image.uploaded_at).toLocaleDateString(); // 날짜 형식으로 그룹화
-            if (!acc[date]) {
-                acc[date] = { date, photoCount: 1, items: [image] };
+            const typeLabel = getTypeLabel(image.type);
+            const key = `${date}-${typeLabel}`;
+            console.log("타입", typeLabel);
+
+            if (!acc[key]) {
+                acc[key] = { date, type: typeLabel, photoCount: 1, items: [image] };
             } else {
-                acc[date].photoCount += 1;
-                acc[date].items.push(image);
+                acc[key].photoCount += 1;
+                acc[key].items.push(image);
             }
             return acc;
         }, {});
@@ -47,6 +55,16 @@ const DateView = () => {
         return Object.values(grouped); // 객체를 배열로 변환
     };
 
+
+    const getTypeLabel = (type) => {
+        switch (type) {
+
+            case 0: return '신고 촬영';
+            case 1: return '주행 신고';
+            case 2: return '기타 신고';
+            default: return '알 수 없음';
+        }
+    }
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = groupedItems.slice(indexOfFirstItem, indexOfLastItem);
@@ -147,10 +165,10 @@ const DateView = () => {
             <div className='contents_grid'>
                 {currentItems.map((item, index) => (
                     <Contents
-                        key={item.date}
-                        id={item.date}
+                        key={`${item.date} - ${item.type}`}
+                        id={`${item.date} - ${item.type}`}
                         date={item.date}
-                        userName="신고 촬영" // userName을 개별 이미지에서 가져오려면 item.items[0].filename.split('_')[0] 등을 사용 가능 //이미지수집방법으로 변경예정
+                        userName={item.type}// userName을 개별 이미지에서 가져오려면 item.items[0].filename.split('_')[0] 등을 사용 가능 // 이미지수집방법으로 변경예정
                         photoCount={item.photoCount}
                         isEven={index % 2 === 0}
                         onSelect={handleSelectItem}

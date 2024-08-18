@@ -68,15 +68,15 @@ export const PopupInside = ({ onClose, image, totalImages, currentIndex }) => {
     const fetchClassificationResult = async (index) => {
 
         try {
-            console.log("index", image[index].id);
-            const response = await fetch(`http://3.39.6.45:8000/images/${image[index].id}`);
+            
+            const response = await fetch(`http://13.124.159.202:8000/images/${image[index].id}`);
             const data = await response.json();
             const classificationResult = parseInt(data.classification_result, 10);
             setDamageType(damageTypeMap[classificationResult]); // DB에서 가져온 값 설정
 
             // 여기는 파손 정도 불러오기.. 
 
-            const degreeResponse = await fetch(`http://3.39.6.45:8000/getDetails`);
+            const degreeResponse = await fetch(`http://13.124.159.202:8000/getDetails`);
             const degreeData = await degreeResponse.json();
 
             // 현재 이미지 id와 일치하는 image-id를 가진 데이터 찾기.. 
@@ -141,7 +141,7 @@ export const PopupInside = ({ onClose, image, totalImages, currentIndex }) => {
             formData.append('classification_result', reverseDamageTypeMap[damageType]);
             formData.append('details', damageDegree);
 
-            const response = await fetch('http://3.39.6.45:8000/maintenance-schedule', {
+            const response = await fetch('http://13.124.159.202:8000/maintenance-schedule', {
                 method: 'POST',
                 body: formData
             });

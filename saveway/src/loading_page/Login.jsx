@@ -20,7 +20,7 @@ export const Login = ({ onClose, onSignUp }) => {
     // login 로직
 
     try {
-      const response = await fetch ('http://3.39.6.45:8000/login', {
+      const response = await fetch ('http://13.124.159.202:8000/login', {
         method: 'POST',
         headers: {
           'Content-Type' : 'application/json',

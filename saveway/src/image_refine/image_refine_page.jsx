@@ -54,7 +54,7 @@ const RefinePage = () => {
             for (const photoIndex of selectedPhotos) {
                 const image = imageOrigin[photoIndex];
     
-                const response = await fetch(`http://3.39.6.45:8000/images/${image.id}`, {
+                const response = await fetch(`http://13.124.159.202:8000/images/${image.id}`, {
                     method: 'DELETE',
                 });
     

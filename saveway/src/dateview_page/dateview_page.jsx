@@ -19,9 +19,10 @@ const DateView = () => {
         // 데이터를 가져오는 함수
         const fetchData = async () => {
             try {
-                const response = await fetch('http://3.39.6.45:8000/images/total');
+                const response = await fetch('http://13.124.159.202:8000/images/total');
                 const data = await response.json();
                 const grouped = groupByDate(data.total_images);
+                console.log("grouped", grouped);
                 setGroupedItems(grouped);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -80,7 +81,7 @@ const DateView = () => {
 
         const imageOrigin = await Promise.all(
             selectedGroup.items.map(async (item) => {
-                const response = await fetch (`http://3.39.6.45:8000/images/get/${item.id}`);
+                const response = await fetch (`http://13.124.159.202:8000/images/get/${item.id}`);
                 
                 // 이미지라서 json으로 받아오면 안되고 blob 데이터로 받아와야 함 
 
@@ -117,7 +118,7 @@ const DateView = () => {
 
                 if (itemsToDelete) {
                     for (const image of itemsToDelete) {
-                        const response = await fetch(`http://3.39.6.45:8000/images/${image.id}`, {
+                        const response = await fetch(`http://13.124.159.202:8000/images/${image.id}`, {
                             method: 'DELETE',
                         });
 

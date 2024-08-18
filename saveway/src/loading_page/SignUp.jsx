@@ -14,8 +14,8 @@ export const SignUp = ({ onClose }) => {
       // id, pw 모두 8글자 이상이어야 함 
 
       try {
-         // 나중에 진짜 api 엔드포인트로 바꾸기
-        const response = await fetch ('http://3.39.6.45:8000/signup', {
+        
+        const response = await fetch ('http://13.124.159.202:8000/signup', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

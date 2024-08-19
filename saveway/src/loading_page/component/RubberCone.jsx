@@ -6,10 +6,11 @@ Source: https://sketchfab.com/3d-models/street-asset-pack-f3eb47d02e2e4ab290e667
 Title: Street Asset Pack
 */
 
-import React, { useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { useGLTF } from '@react-three/drei'
 
 export default function RubberCone(props) {
+
   const { nodes, materials } = useGLTF('./models/street_asset/scene.gltf')
   return (
     <group {...props} dispose={null} position={[-3.3,-9,16] }>

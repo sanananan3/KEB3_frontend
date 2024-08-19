@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useEffect }from 'react'
+import { useLoader } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei'
 
 export default function City(props) {
+
   const { nodes, materials } = useGLTF('./models/city/scene.gltf')
   return (
     <group position = {[125,-9,98]} {...props} dispose={null} scale = {[0.009,0.009,0.009]}>

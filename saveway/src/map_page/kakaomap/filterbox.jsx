@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect,useState } from 'react';
 import './filterbox.css';
 import '../../styles/fonts.css';
 
@@ -35,10 +35,18 @@ const FilterBox = ({ onFilterChange }) => {
     };
 
     const handleSubmit = () => {
-        onFilterChange(tempSelectedDamageParts);
+
+       
+
+        onFilterChange({ damageParts: tempSelectedDamageParts, damageLevels: tempSelectedDamageLevels});
+    
+        setTempSelectedDamageLevels([]);
+        setTempSelectedDamageParts([]);
         setDamageLevelVisible(false);
         setDamagePartVisible(false);
+
     };
+
 
     return (
         <>
@@ -68,15 +76,29 @@ const FilterBox = ({ onFilterChange }) => {
             <div className="damage-part-box" onClick={toggleDamagePartVisibility}>
                 파손부분 ▼
             </div>
+
             {isDamagePartVisible && (
                 <div className="damage-part-list">
                     <div className="damage-part-filter-group">
                         <label><input type="checkbox" name="damage-part" value="PE방호벽" onChange={handleDamagePartChange} /> PE방호벽</label>
                         <label><input type="checkbox" name="damage-part" value="PE안내봉" onChange={handleDamagePartChange} /> PE안내봉</label>
-                        <label><input type="checkbox" name="damage-part" value="PE드럼" onChange={handleDamagePartChange} /> PE드럼</label>
-                        <label><input type="checkbox" name="damage-part" value="포트홀" onChange={handleDamagePartChange} /> 포트홀</label>
+                        <label><input type="checkbox" name="damage-part" value="로드킬" onChange={handleDamagePartChange} /> 로드킬</label>
+                        <label><input type="checkbox" name="damage-part" value="도로 요철 균열" onChange={handleDamagePartChange} /> 도로 요철 균열</label>
+                        <label><input type="checkbox" name="damage-part" value="표지판 파손" onChange={handleDamagePartChange} /> 표지판 파손</label>
+                        <label><input type="checkbox" name="damage-part" value="배수시설 불량" onChange={handleDamagePartChange} /> 배수시설 불량</label>
+                        <label><input type="checkbox" name="damage-part" value="가드레일 파손" onChange={handleDamagePartChange} /> 가드레일 파손</label>
+                        <label><input type="checkbox" name="damage-part" value="PE드럼" onChange={handleDamagePartChange} /> PE드럼 </label>
+                        <br></br>
+                        <label><input type="checkbox" name="damage-part" value="포트홀" onChange={handleDamagePartChange} /> 포트홀 </label>
+                        <br></br>
                         <label><input type="checkbox" name="damage-part" value="라바콘" onChange={handleDamagePartChange} /> 라바콘</label>
                         <label><input type="checkbox" name="damage-part" value="시선유도봉" onChange={handleDamagePartChange} /> 시선유도봉</label>
+                        <label><input type="checkbox" name="damage-part" value="낙석" onChange={handleDamagePartChange} /> 낙석 </label>
+                        <br></br>
+                        <label><input type="checkbox" name="damage-part" value="노면 균열" onChange={handleDamagePartChange} /> 노면 균열</label>
+                        <label><input type="checkbox" name="damage-part" value="중앙 분리대" onChange={handleDamagePartChange} /> 중앙 분리대</label>
+                        <label><input type="checkbox" name="damage-part" value="보도블럭 파손" onChange={handleDamagePartChange} /> 보도블럭 파손</label>
+
                     </div>
                     <hr/>
                     <div className='button'>

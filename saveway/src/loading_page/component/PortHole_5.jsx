@@ -6,10 +6,11 @@ Source: https://sketchfab.com/3d-models/dry-riverbed-spain-6b596a7736c34938b1979
 Title: Dry riverbed, Spain
 */
 
-import React, { useRef } from 'react'
+import React, { useRef,useEffect } from 'react'
 import { useGLTF } from '@react-three/drei'
 
 export function PortHole_5(props) {
+
   const { nodes, materials } = useGLTF('./models/porthole_5/scene.gltf')
   return (
     <group {...props} dispose={null} scale={0.04} position={[0,-8.9,16]}>

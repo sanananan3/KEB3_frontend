@@ -1,5 +1,5 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { UserProvider } from "./UserProvider";
 import LoadingPage from './loading_page/LoadingPage';
 import MainPage from './main_page/MainPage';
@@ -7,8 +7,24 @@ import Home from './map_page/home';
 import Map from './map_page/map_page';
 import DateView from './dateview_page/dateview_page';
 import RefinePage from "./image_refine/image_refine_page";
+import SplashScreen from "./loading_page/SpalshScreen";
 
 function App() {
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(()=> {
+    const timer = setTimeout(()=> {
+      setLoading(false);
+    }, 6000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <SplashScreen /> ; 
+  }
+  
   return (
   
     <BrowserRouter>

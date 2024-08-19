@@ -6,10 +6,11 @@ Source: https://sketchfab.com/3d-models/posthole-8c75e761d6244e2f9482b0a5009061b
 Title: Posthole
 */
 
-import React, { useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { useGLTF } from '@react-three/drei'
 
 export function PortHole_7(props) {
+
   const { nodes, materials } = useGLTF('./models/porthole_7/scene.gltf')
   return (
     <group {...props} dispose={null} scale={1.25} position = {[1.9,-8.2,16]}>

@@ -6,10 +6,11 @@ Source: https://sketchfab.com/3d-models/road-props-ea361482b06e483f895001407c637
 Title: Road props
 */
 
-import React, { useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { useGLTF } from '@react-three/drei'
 
 export default function Tubular(props) {
+
   const { nodes, materials } = useGLTF('./models/street_asset2/scene.gltf')
   return (
     <group {...props} dispose={null}>

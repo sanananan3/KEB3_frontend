@@ -14,7 +14,6 @@ export function Robot_3(props) {
   const { nodes, materials, animations } = useGLTF('./models/robot_3/scene.gltf')
   const { actions } = useAnimations(animations, group)
 
-
    useEffect(() => {
 
     if (actions) {

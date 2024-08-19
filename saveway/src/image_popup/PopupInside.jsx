@@ -57,10 +57,20 @@ export const PopupInside = ({ onClose, image, totalImages, currentIndex }) => {
     const damageTypeMap = {
         0: "PE방호벽",
         1: "PE안내봉",
-        2: "PE드럼",
-        3: "포트홀",
-        4: "라바콘",
-        5: "시선유도봉"
+        2: "로드킬",
+        3: "도로 요철 균열",
+        4: "표지판 파손",
+        5: "배수시설 불량", 
+        6: "가드레일 파손",
+        7: "PE드럼",
+        8: "포트홀",
+        9: "라바콘",
+        10: "시선유도봉",
+        11: "낙석",
+        12: "노면 균열",
+        13: "중앙 분리대", 
+        14: "보도블럭 파손",
+     
     };
 
     const reverseDamageTypeMap = Object.fromEntries(

@@ -63,7 +63,6 @@ export const LoadInside = () => {
     const [isSignUpOpen, setIsSignUpOpen] = useState(false); // 가입 팝업 열기/닫기 상태
     const startTime = useRef();
     const initialLoadComplete = useRef(false);
-    
 
 
   const handleLoginClose = () => {

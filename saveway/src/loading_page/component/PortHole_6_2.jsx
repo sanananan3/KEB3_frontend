@@ -6,10 +6,11 @@ Source: https://sketchfab.com/3d-models/postholes-test-3fdd6292550548068b1e51f8e
 Title: Postholes Test
 */
 
-import React, { useRef } from 'react'
+import React, { useRef , useEffect} from 'react'
 import { useGLTF } from '@react-three/drei'
 
 export function PortHole_6_2(props) {
+
   const { nodes, materials } = useGLTF('./models/porthole_6/scene.gltf')
   return (
     <group {...props} dispose={null} scale={0.025} position ={[0.5,-9,18.6]}>

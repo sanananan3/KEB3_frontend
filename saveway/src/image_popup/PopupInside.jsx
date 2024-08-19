@@ -3,6 +3,8 @@ import './popup.css';
 import { AiOutlineClose } from "react-icons/ai";
 import CustomSelect from './CustomSelect';
 import CustomSelectD from './CustomSelectD';
+import Swal from "sweetalert2";
+
 
 const KAKAO_API_KEY = '15f59f6649931def45a278eedf761891'; // 카카오 맵 REST API 키 
 
@@ -69,14 +71,14 @@ export const PopupInside = ({ onClose, image, totalImages, currentIndex }) => {
 
         try {
             
-            const response = await fetch(`http://13.124.159.202:8000/images/${image[index].id}`);
+            const response = await fetch(`http://3.36.52.35:8000/images/${image[index].id}`);
             const data = await response.json();
             const classificationResult = parseInt(data.classification_result, 10);
             setDamageType(damageTypeMap[classificationResult]); // DB에서 가져온 값 설정
 
             // 여기는 파손 정도 불러오기.. 
 
-            const degreeResponse = await fetch(`http://13.124.159.202:8000/getDetails`);
+            const degreeResponse = await fetch(`http://3.36.52.35:8000/getDetails`);
             const degreeData = await degreeResponse.json();
 
             // 현재 이미지 id와 일치하는 image-id를 가진 데이터 찾기.. 
@@ -141,19 +143,38 @@ export const PopupInside = ({ onClose, image, totalImages, currentIndex }) => {
             formData.append('classification_result', reverseDamageTypeMap[damageType]);
             formData.append('details', damageDegree);
 
-            const response = await fetch('http://13.124.159.202:8000/maintenance-schedule', {
+            const response = await fetch('http://3.36.52.35:8000/maintenance-schedule', {
                 method: 'POST',
                 body: formData
             });
     
             if (response.ok) {
-                alert('변경된 정보가 저장되었습니다');
-                console.log('image_id',image[currentImageIndex].id );
+
+                Swal.fire({
+                    icon: 'success',
+                    title: '변경된 정보가 저장되었습니다',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    customClass: {
+                      title: 'swal2-title-small',
+                    }
+                  });
+          
+              //   alert('변경된 정보가 저장되었습니다');
+              //   console.log('image_id',image[currentImageIndex].id );
                 onClose();
             } else {
                 const errorData = await response.json();
                 console.log("Error details:", errorData);
-                alert('저장에 실패하였습니다');
+
+                Swal.fire({
+                    icon: 'error',
+                    title: '저장에 실패하였습니다',
+                    customClass: {
+                      title: 'swal2-title-small',
+                    }
+                  });
+              //   alert('저장에 실패하였습니다');
             }
         } catch (error) {
             console.error('Error saving maintenance schedule', error);

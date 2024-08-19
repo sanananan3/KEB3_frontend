@@ -24,7 +24,7 @@ const DateView = () => {
         // 데이터를 가져오는 함수
         const fetchData = async () => {
             try {
-                const response = await fetch('http://13.124.159.202:8000/images/total');
+                const response = await fetch('http://3.36.52.35:8000/images/total');
                 const data = await response.json();
                 const grouped = groupByDateAndType(data.total_images);
                 setGroupedItems(grouped);
@@ -89,44 +89,41 @@ const DateView = () => {
         );
     };
 
-    const handleNavigateToRefinePage = async (date) => {
-       try{
-        // 1. 해당 날짜에 속한 이미지 id 가져오기 
-        const selectedGroup = groupedItems.find(item=> item.date === date);
-        if (!selectedGroup) return;
-
-        // 2. 각 이미지 id에 대해 원본 이미지 데이터 가져오기 
-
-        const imageOrigin = await Promise.all(
-            selectedGroup.items.map(async (item) => {
-                const response = await fetch (`http://13.124.159.202:8000/images/get/${item.id}`);
-                
-                // 이미지라서 json으로 받아오면 안되고 blob 데이터로 받아와야 함 
-
-                const blob = await response.blob();
-
-                // blob 데이터를 base64로 변환 
-
-                const base64Image = await new Promise((resolve, reject ) => {
-                    const reader = new FileReader();
-                    reader.onloadend = () => resolve(reader.result);
-                    reader.onerror = reject;
-                    reader.readAsDataURL(blob);
-                });
-             
-                console.log("base64image", base64Image);
-                return {id: item.id, url: base64Image, date: date} ;
-              // image id와 url 반환
-            })
-        );
-        
-        navigate('/refine_page', {state: {imageOrigin}}); // refine 페이지로 이동하면서 이미지 원본 데이터 전달
-
-       } catch (error) {
-        console.error ('Error fetching original image', error);
-       }
+    const handleNavigateToRefinePage = async (date, type) => {
+        try {
+            // 1. 해당 날짜와 타입에 속한 이미지 id 가져오기 
+            const selectedGroup = groupedItems.find(item => item.date === date && item.type === type);
+            if (!selectedGroup) return;
+    
+            // 2. 각 이미지 id에 대해 원본 이미지 데이터 가져오기 
+            const imageOrigin = await Promise.all(
+                selectedGroup.items.map(async (item) => {
+                    const response = await fetch(`http://3.36.52.35:8000/images/get/${item.id}`);
+                    
+                    // 이미지라서 json으로 받아오면 안 되고 blob 데이터로 받아와야 함 
+                    const blob = await response.blob();
+    
+                    // blob 데이터를 base64로 변환 
+                    const base64Image = await new Promise((resolve, reject) => {
+                        const reader = new FileReader();
+                        reader.onloadend = () => resolve(reader.result);
+                        reader.onerror = reject;
+                        reader.readAsDataURL(blob);
+                    });
+                 
+                    console.log("base64image", base64Image);
+                    return {id: item.id, url: base64Image, date: date};
+                    // image id와 url 반환
+                })
+            );
+            
+            navigate('/refine_page', {state: {imageOrigin}}); // refine 페이지로 이동하면서 이미지 원본 데이터 전달
+    
+        } catch (error) {
+            console.error('Error fetching original image', error);
+        }
     };
-
+    
 
     const handleDelete = async () => {
         try {
@@ -136,7 +133,7 @@ const DateView = () => {
 
                 if (itemsToDelete) {
                     for (const image of itemsToDelete) {
-                        const response = await fetch(`http://13.124.159.202:8000/images/${image.id}`, {
+                        const response = await fetch(`http://3.36.52.35:8000/images/${image.id}`, {
                             method: 'DELETE',
                         });
 
@@ -165,16 +162,17 @@ const DateView = () => {
             <div className='contents_grid'>
                 {currentItems.map((item, index) => (
                     <Contents
-                        key={`${item.date} - ${item.type}`}
-                        id={`${item.date} - ${item.type}`}
-                        date={item.date}
-                        userName={item.type}// userName을 개별 이미지에서 가져오려면 item.items[0].filename.split('_')[0] 등을 사용 가능 // 이미지수집방법으로 변경예정
-                        photoCount={item.photoCount}
-                        isEven={index % 2 === 0}
-                        onSelect={handleSelectItem}
-                        isSelected={selectedItems.includes(item.date)}
-                        onNavigate={() => handleNavigateToRefinePage(item.date)}
-                    />
+                    key={`${item.date} - ${item.type}`}
+                    id={`${item.date} - ${item.type}`}
+                    date={item.date}
+                    userName={item.type}
+                    photoCount={item.photoCount}
+                    isEven={index % 2 === 0}
+                    onSelect={handleSelectItem}
+                    isSelected={selectedItems.includes(item.date)}
+                    onNavigate={() => handleNavigateToRefinePage(item.date, item.type)} // type도 함께 전달
+                />
+            
                 ))}
             </div>
             <div className="pagination">

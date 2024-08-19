@@ -25,12 +25,12 @@ function KakaoMap({ searchPlace }) {
     useEffect(() => {
         async function fetchMarkers() {
             try {
-                const response = await fetch('http://13.124.159.202:8000/images/total');
+                const response = await fetch('http://3.36.52.35:8000/images/total');
                 const totalData = await response.json();
                 const imageIds = totalData.total_images.map(image => image.id);
 
                 const markerPromises = imageIds.map(async (id) => {
-                    const res = await fetch(`http://13.124.159.202:8000/images/${id}`);
+                    const res = await fetch(`http://3.36.52.35:8000/images/${id}`);
                     const imageData = await res.json();
                     return imageData;
                 });

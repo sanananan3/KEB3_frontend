@@ -268,3 +268,18 @@ html, body {
     margin-left: auto;
     margin-top: 15px;
 }
+
+/* sweetalert-custom.css */
+.swal2-title-small {
+    font-size: 15px; /* 타이틀의 폰트 크기 조절 */
+    font-family: 'HakgyoansimWoojuR';
+
+
+  }
+  
+  .swal2-text-small {
+    font-size: 13px; /* 텍스트의 폰트 크기 조절 */
+    font-family: 'HakgyoansimWoojuR';
+
+  }
+  
